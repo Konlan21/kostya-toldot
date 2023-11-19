@@ -80,20 +80,24 @@ WSGI_APPLICATION = 'server.wsgi.application'
 
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2', 
 #         'NAME': 'scraper_data',
 #         'USER': 'postgres',
-#         'PASSWORD': '654zz321xx',
+#         'PASSWORD': '654zz321xx',  
 #         'HOST': '127.0.0.1',
 #         'PORT': '5432',
 #     }
 # }
 
 import dj_database_url
+import environ
+
+env = environ.Env()
+environ.Env.read_env()
 
 
 DATABASES = {
-    'default': dj_database_url.parse('postgres://video_db_uwyv_user:xtb6sJGqH7aQq1EQeC6OeHswtC4EW0wP@dpg-ckavfr6smu8c73961pt0-a.ohio-postgres.render.com/video_db_uwyv')
+    'default': dj_database_url.parse(env('DATABASE_URL'))
 }
 
 
